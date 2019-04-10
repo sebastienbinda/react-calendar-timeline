@@ -35,15 +35,13 @@ class ScrollElement extends Component {
   handleWheel = e => {
     const { traditionalZoom } = this.props
 
-    
-
     // zoom in the time dimension
-    if (e.ctrlKey || e.metaKey || e.altKey) {
+    if (traditionalZoom || e.ctrlKey || e.metaKey || e.altKey) {
       e.preventDefault()
       const parentPosition = getParentPosition(e.currentTarget)
       const xPosition = e.clientX - parentPosition.x
 
-      const speed = e.ctrlKey ? 10 : e.metaKey ? 3 : 1
+      const speed = e.ctrlKey ? 10 : e.metaKey ? 3 : 5
 
       // convert vertical zoom to horiziontal
       this.props.onWheelZoom(speed, xPosition, e.deltaY)

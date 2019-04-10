@@ -549,11 +549,13 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   showPeriod = (from, unit) => {
+    const { maxZoom, defaultTimeStart } = this.props
     let visibleTimeStart = from.valueOf()
     let visibleTimeEnd = moment(from)
       .add(1, unit)
       .valueOf()
     let zoom = visibleTimeEnd - visibleTimeStart
+    const curentZoom = this.state.visibleTimeEnd - this.state.visibleTimeStart
 
     // can't zoom in more than to show one hour
     if (zoom < 360000) {
@@ -571,6 +573,19 @@ export default class ReactCalendarTimeline extends Component {
       visibleTimeStart = from.startOf(nextUnit).valueOf()
       visibleTimeEnd = moment(visibleTimeStart).add(1, nextUnit)
       zoom = visibleTimeEnd - visibleTimeStart
+    }
+
+    if (unit === 'year') {
+      // If zoom max is reached, then zoom in the selected year
+      if ( curentZoom === maxZoom) {
+        visibleTimeStart = from.startOf(unit).valueOf()
+        visibleTimeEnd = moment(visibleTimeStart).add(1, unit)
+        zoom = visibleTimeEnd - visibleTimeStart
+      } else if (defaultTimeStart) {
+        // Else zoom to max zoom with startDate = defaultStartDate
+        visibleTimeStart = defaultTimeStart.valueOf()
+        zoom = maxZoom
+      }
     }
 
     this.props.onTimeChange(
