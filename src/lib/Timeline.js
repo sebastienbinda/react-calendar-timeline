@@ -79,6 +79,7 @@ export default class ReactCalendarTimeline extends Component {
     onCanvasDoubleClick: PropTypes.func,
     onCanvasContextMenu: PropTypes.func,
     onZoom: PropTypes.func,
+    onScrollStop : PropTypes.func,
 
     moveResizeValidator: PropTypes.func,
 
@@ -1066,6 +1067,7 @@ export default class ReactCalendarTimeline extends Component {
                 onWheelZoom={this.handleWheelZoom}
                 traditionalZoom={traditionalZoom}
                 onScroll={this.onScroll}
+                onScrollStop={this.props.onScrollStop}
                 isInteractingWithItem={isInteractingWithItem}
               >
               <MarkerCanvas>

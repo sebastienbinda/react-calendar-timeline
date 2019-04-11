@@ -1,6 +1,6 @@
 {
-  "name": "react-calendar-timeline",
-  "version": "0.23.1",
+  "name": "react-calendar-timeline-cssi",
+  "version": "0.0.1",
   "description": "react calendar timeline",
   "main": "lib/index.js",
   "scripts": {
@@ -18,10 +18,10 @@
     "lib",
     "src"
   ],
-  "homepage": "https://github.com/namespace-ee/react-calendar-timeline",
+  "homepage": "https://github.com/sebastienbinda/react-calendar-timeline",
   "repository": {
     "type": "git",
-    "url": "https://github.com/namespace-ee/react-calendar-timeline.git"
+    "url": "https://github.com/sebastienbinda/react-calendar-timeline.git"
   },
   "author": "Marius Andra <marius.andra@gmail.com>",
   "contributors": [
@@ -55,6 +55,10 @@
     {
       "name": "Kevin Mann",
       "url": "https://github.com/kevinmanncito"
+    },
+    {
+      "name": "Sébastien Binda",
+      "url": "https://github.com/sebastienbinda"
     }
   ],
   "license": "MIT",

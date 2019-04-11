@@ -12,13 +12,20 @@ class ScrollElement extends Component {
     isInteractingWithItem: PropTypes.bool.isRequired,
     onZoom: PropTypes.func.isRequired,
     onWheelZoom: PropTypes.func.isRequired,
-    onScroll: PropTypes.func.isRequired
+    onScroll: PropTypes.func.isRequired,
+    onScrollStop: PropTypes.func,
   }
 
   constructor() {
     super()
     this.state = {
       isDragging: false
+    }
+  }
+
+  componentWillUnmount = () => {
+    if (this.isScrolling) {
+      clearTimeout(this.isScrolling)
     }
   }
 
@@ -30,6 +37,13 @@ class ScrollElement extends Component {
   handleScroll = () => {
     const scrollX = this.scrollComponent.scrollLeft
     this.props.onScroll(scrollX)
+    if (this.props.onScrollStop) {
+      // Set a timeout to run after scrolling ends
+	    this.isScrolling = setTimeout(() => {
+		    // Run the callback
+		    this.props.onScrollStop(scrollX)
+	    }, 66)
+    }
   }
 
   handleWheel = e => {
